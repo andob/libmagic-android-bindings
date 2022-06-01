@@ -1,0 +1,87 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
+
+import org.apache.tools.ant.taskdefs.condition.Os
+
+task buildLibMagic {
+    doLast {
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            throw new RuntimeException("Please use linux to build this project!")
+        }
+
+        def process = "./buildLibMagic.sh".execute()
+        process.in.eachLine { line -> println line }
+        process.err.eachLine { line -> println 'ERROR: ' + line }
+        process.waitFor()
+
+        if (process.exitValue()!=0) {
+            System.err.println("libmagic build exited with non-zero exit code")
+            throw new RuntimeException("libmagic build exit code: "+process.exitCode())
+        }
+    }
+}
+
+android {
+    namespace "ro.andob.libmagic"
+    compileSdkVersion 32
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 32
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    publishing {
+        singleVariant("release") {}
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path 'src/main/cpp/CMakeLists.txt'
+        }
+    }
+
+    gradle.projectsEvaluated {
+        tasks.findAll { task ->
+            task!=buildLibMagic && (
+                task.name.toLowerCase().contains("assets") ||
+                task.name.toLowerCase().contains("compile") ||
+                task.name.toLowerCase().contains("cmake"))
+        }.forEach { task -> task.dependsOn(buildLibMagic) }
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+project.afterEvaluate {
+    publishing {
+        publications {
+            repositories.maven {
+                url 'https://maven.andob.info/repository/open_source/'
+                credentials {
+                    username "$System.env.MAVEN_PUBLISH_USERNAME"
+                    password "$System.env.MAVEN_PUBLISH_PASSWORD"
+                }
+            }
+
+            release(MavenPublication) {
+                from components.release
+                groupId 'ro.andob.libmagic'
+                artifactId 'libmagic-bindings'
+                version '1.0.0'
+            }
+        }
+    }
+}

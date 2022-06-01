@@ -1,0 +1,2 @@
+include ':sample', ':bindings'
+rootProject.name='libmagic-android-bindings'

@@ -1,0 +1,15 @@
+ninja: Entering directory `/home/andob/libmagic-android-bindings/bindings/.cxx/Debug/2b91ju3i/x86'
+[1/2] Building C object CMakeFiles/magic.dir/Bindings.c.o
+[2/2] Linking C shared library /home/andob/libmagic-android-bindings/bindings/build/intermediates/cxx/Debug/2b91ju3i/obj/x86/libmagic.so
+FAILED: /home/andob/libmagic-android-bindings/bindings/build/intermediates/cxx/Debug/2b91ju3i/obj/x86/libmagic.so 
+: && /home/andob/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=i686-none-linux-android21 --gcc-toolchain=/home/andob/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/andob/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/linux-x86_64/sysroot -fPIC -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -Wall -DHAVE_CONFIG_H -O0 -fno-limit-debug-info  -Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libgcc_real.a -Wl,--exclude-libs,libatomic.a -static-libstdc++ -Wl,--build-id -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments -shared -Wl,-soname,libmagic.so -o /home/andob/libmagic-android-bindings/bindings/build/intermediates/cxx/Debug/2b91ju3i/obj/x86/libmagic.so CMakeFiles/magic.dir/Bindings.c.o  -llog  -lz  -latomic -lm && :
+/home/andob/libmagic-android-bindings/bindings/src/main/cpp/Bindings.c:28: error: undefined reference to 'magic_open'
+/home/andob/libmagic-android-bindings/bindings/src/main/cpp/Bindings.c:38: error: undefined reference to 'magic_load'
+/home/andob/libmagic-android-bindings/bindings/src/main/cpp/Bindings.c:42: error: undefined reference to 'magic_error'
+/home/andob/libmagic-android-bindings/bindings/src/main/cpp/Bindings.c:43: error: undefined reference to 'magic_close'
+/home/andob/libmagic-android-bindings/bindings/src/main/cpp/Bindings.c:48: error: undefined reference to 'magic_file'
+/home/andob/libmagic-android-bindings/bindings/src/main/cpp/Bindings.c:53: error: undefined reference to 'magic_error'
+/home/andob/libmagic-android-bindings/bindings/src/main/cpp/Bindings.c:54: error: undefined reference to 'magic_close'
+/home/andob/libmagic-android-bindings/bindings/src/main/cpp/Bindings.c:60: error: undefined reference to 'magic_close'
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+ninja: build stopped: subcommand failed.

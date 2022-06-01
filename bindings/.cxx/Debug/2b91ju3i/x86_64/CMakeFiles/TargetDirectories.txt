@@ -1,0 +1,3 @@
+/home/andob/libmagic-android-bindings/bindings/.cxx/Debug/2b91ju3i/x86_64/CMakeFiles/rebuild_cache.dir
+/home/andob/libmagic-android-bindings/bindings/.cxx/Debug/2b91ju3i/x86_64/CMakeFiles/edit_cache.dir
+/home/andob/libmagic-android-bindings/bindings/.cxx/Debug/2b91ju3i/x86_64/CMakeFiles/magic.dir

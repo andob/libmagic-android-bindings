@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-git reset --hard
 rm -rf ./file
 git submodule update --init --recursive
 cd ./file
@@ -12,4 +11,3 @@ autoconf
 ./configure
 make
 cd ..
-

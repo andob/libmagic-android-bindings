@@ -1,0 +1,7 @@
+Executable : /home/andob/Android/Sdk/cmake/3.18.1/bin/ninja
+arguments : 
+-C
+/home/andob/libmagic-android-bindings/bindings/.cxx/Debug/2b91ju3i/arm64-v8a
+magic
+jvmArgs : 
+
