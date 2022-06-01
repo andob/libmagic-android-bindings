@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/andob/libmagic-android-bindings/bindings/.cxx/Debug/2b91ju3i/arm64-v8a",
-  "command": "/home/andob/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android21 --gcc-toolchain=/home/andob/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/linux-x86_64 --sysroot=/home/andob/Android/Sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/linux-x86_64/sysroot -Dmagic_EXPORTS -I/home/andob/libmagic-android-bindings/bindings/src/main/cpp/../../../../file/src -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -Wall -DHAVE_CONFIG_H -O0 -fno-limit-debug-info  -fPIC -o CMakeFiles/magic.dir/Bindings.c.o -c /home/andob/libmagic-android-bindings/bindings/src/main/cpp/Bindings.c",
-  "file": "/home/andob/libmagic-android-bindings/bindings/src/main/cpp/Bindings.c"
-}
-]
