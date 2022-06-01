@@ -1,4 +1,5 @@
 .gradle/
 .idea/
 bindings/build/
+bindings/.cxx/
 sample/build/
