@@ -10,4 +10,6 @@ automake --add-missing --copy
 autoconf
 ./configure
 make
+mkdir ./magic/bin
+cp ./magic/magic.mgc ./magic/bin
 cd ..

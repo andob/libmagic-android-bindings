@@ -4,20 +4,20 @@ apply plugin: 'maven-publish'
 
 import org.apache.tools.ant.taskdefs.condition.Os
 
-task buildLibMagic {
+task updateLibMagic {
     doLast {
         if (Os.isFamily(Os.FAMILY_WINDOWS)) {
             throw new RuntimeException("Please use linux to build this project!")
         }
 
-        def process = "./buildLibMagic.sh".execute()
+        def process = "./updateLibMagic.sh".execute()
         process.in.eachLine { line -> println line }
         process.err.eachLine { line -> println 'ERROR: ' + line }
         process.waitFor()
 
         if (process.exitValue()!=0) {
-            System.err.println("libmagic build exited with non-zero exit code")
-            throw new RuntimeException("libmagic build exit code: "+process.exitCode())
+            System.err.println("libmagic update exited with non-zero exit code")
+            throw new RuntimeException("libmagic update exit code: "+process.exitCode())
         }
     }
 }
@@ -45,6 +45,10 @@ android {
         }
     }
 
+    sourceSets {
+        main.assets.srcDirs = [ '../file/magic/bin' ]
+    }
+
     externalNativeBuild {
         cmake {
             path 'src/main/cpp/CMakeLists.txt'
@@ -53,11 +57,11 @@ android {
 
     gradle.projectsEvaluated {
         tasks.findAll { task ->
-            task!=buildLibMagic && (
+            task!=updateLibMagic && (
                 task.name.toLowerCase().contains("assets") ||
                 task.name.toLowerCase().contains("compile") ||
                 task.name.toLowerCase().contains("cmake"))
-        }.forEach { task -> task.dependsOn(buildLibMagic) }
+        }.forEach { task -> task.dependsOn(updateLibMagic) }
     }
 }
 

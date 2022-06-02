@@ -1,5 +1,12 @@
+//Bindings.c direct dependencies
 #include <jni.h>
 #include <stdio.h>
+
+//magic.c transient dependencies
+#include <unistd.h>
+#include <stdlib.h>
+#include <ctype.h>
+
 #include "../../../../file/src/magic.h"
 
 #define JAVA_LANG_EXCEPTION "java/lang/Exception"
@@ -8,7 +15,6 @@ JNIEXPORT jstring JNICALL Java_ro_andob_libmagic_LibMagic_getFileMimeType(JNIEnv
 {
     if (mgc_file_path_java == NULL)
     {
-        //todo test this
         const char* error = "Please send non null MGC file path!";
         (*env)->ThrowNew(env, (*env)->FindClass(env, JAVA_LANG_EXCEPTION), error);
         return NULL;
@@ -16,7 +22,6 @@ JNIEXPORT jstring JNICALL Java_ro_andob_libmagic_LibMagic_getFileMimeType(JNIEnv
 
     if (file_path_java == NULL)
     {
-        //todo test this
         const char* error = "Please send non null file path!";
         (*env)->ThrowNew(env, (*env)->FindClass(env, JAVA_LANG_EXCEPTION), error);
         return NULL;
@@ -29,7 +34,6 @@ JNIEXPORT jstring JNICALL Java_ro_andob_libmagic_LibMagic_getFileMimeType(JNIEnv
 
     if (magic_cookie == NULL)
     {
-        //todo test this
         const char* error = "magic_open failed! Cannot load libmagic!";
         (*env)->ThrowNew(env, (*env)->FindClass(env, JAVA_LANG_EXCEPTION), error);
         return NULL;
@@ -37,7 +41,6 @@ JNIEXPORT jstring JNICALL Java_ro_andob_libmagic_LibMagic_getFileMimeType(JNIEnv
 
     if (magic_load(magic_cookie, mgc_file_path) != 0)
     {
-        //todo test this
         char error[1024];
         sprintf(error, "cannot load libmagic database - %s", magic_error(magic_cookie));
         magic_close(magic_cookie);
@@ -48,7 +51,6 @@ JNIEXPORT jstring JNICALL Java_ro_andob_libmagic_LibMagic_getFileMimeType(JNIEnv
     const char* mime_type = magic_file(magic_cookie, file_path);
     if (mime_type == NULL)
     {
-        //todo test this
         char error[1024];
         sprintf(error, "cannot determine mime type - %s", magic_error(magic_cookie));
         magic_close(magic_cookie);
@@ -56,7 +58,6 @@ JNIEXPORT jstring JNICALL Java_ro_andob_libmagic_LibMagic_getFileMimeType(JNIEnv
         return NULL;
     }
 
-    //todo test this
     magic_close(magic_cookie);
     return (*env)->NewStringUTF(env, mime_type);
 }
