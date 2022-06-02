@@ -13,6 +13,7 @@ public final class LibMagic
 
     public static @NotNull String getFileMimeType(File file)
     {
+        //todo recovery options
         return Objects.requireNonNull(getFileMimeType(null, null));
     }
 }
