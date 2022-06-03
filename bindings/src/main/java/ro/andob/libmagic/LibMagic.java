@@ -21,11 +21,6 @@ public final class LibMagic
 
     public static @NotNull String getFileMimeType(File file)
     {
-        return getFileMimeType(file, LibMagicErrorHandler.getDefault());
-    }
-
-    public static @NotNull String getFileMimeType(File file, LibMagicErrorHandler errorHandler)
-    {
         Objects.requireNonNull(file);
 
         //some hard to detect mime types
@@ -34,19 +29,7 @@ public final class LibMagic
         if (file.getName().endsWith(".ifc"))
             return "application/octet-stream";
 
-        try
-        {
-            String mimeType = Objects.requireNonNull(getFileMimeType(mgcDatabaseFilePath, file.getAbsolutePath()));
-            return mimeType.contains(";") ? mimeType.substring(0, mimeType.indexOf(";")) : mimeType;
-        }
-        catch (Exception ex)
-        {
-            errorHandler.doOnError(file, ex);
-
-            if (errorHandler.shouldThrowOnError())
-                throw new RuntimeException("Cannot determine mime type of file! "+file.getAbsolutePath(), ex);
-
-            return Objects.requireNonNull(errorHandler.determineMimeTypeUsingAlternateMethod(file));
-        }
+        String mimeType = Objects.requireNonNull(getFileMimeType(mgcDatabaseFilePath, file.getAbsolutePath()));
+        return mimeType.contains(";") ? mimeType.substring(0, mimeType.indexOf(";")) : mimeType;
     }
 }
