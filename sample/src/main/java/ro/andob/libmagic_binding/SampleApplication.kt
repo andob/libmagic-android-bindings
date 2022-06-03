@@ -15,7 +15,6 @@ class SampleApplication : Application()
             uncaughtExceptionHandlerDelegate?.uncaughtException(thread, ex)
         }
 
-        getFileStreamPath("magic.mgc").writeText("som")
         LibMagic.initialize(this)
     }
 }
