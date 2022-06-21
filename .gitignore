@@ -3,3 +3,4 @@
 bindings/build/
 bindings/.cxx/
 sample/build/
+local.properties
