@@ -1,8 +1,5 @@
-//Bindings.c direct dependencies
 #include <jni.h>
 #include <stdio.h>
-
-//magic.c transient dependencies
 #include <unistd.h>
 #include <stdlib.h>
 #include <ctype.h>
