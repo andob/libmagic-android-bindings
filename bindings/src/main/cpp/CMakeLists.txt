@@ -34,7 +34,6 @@ endfunction()
 set(LIBFILE "../../../../file/src")
 include_directories(${LIBFILE})
 
-variable_watch(SOURCES)
 file(GLOB_RECURSE SOURCES
     Bindings.c
     ${LIBFILE}/*.c
