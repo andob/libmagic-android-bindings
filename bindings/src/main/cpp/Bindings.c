@@ -29,22 +29,23 @@ JNIEXPORT jstring JNICALL Java_ro_andob_libmagic_LibMagic_getFileMimeType(JNIEnv
 
     magic_t magic_cookie = magic_open(MAGIC_MIME);
 
+    #define ReleaseMemory if (magic_cookie == NULL) magic_close(magic_cookie); \
+        (*env)->ReleaseStringUTFChars(env, mgc_file_path_java, mgc_file_path); \
+        (*env)->ReleaseStringUTFChars(env, file_path_java, file_path);
+
     if (magic_cookie == NULL)
     {
+        ReleaseMemory;
         const char* error = "magic_open failed! Cannot load libmagic!";
-        (*env)->ReleaseStringUTFChars(env, mgc_file_path_java, mgc_file_path);
-        (*env)->ReleaseStringUTFChars(env, file_path_java, file_path);
         (*env)->ThrowNew(env, (*env)->FindClass(env, JAVA_LANG_EXCEPTION), error);
         return NULL;
     }
 
     if (magic_load(magic_cookie, mgc_file_path) != 0)
     {
+        ReleaseMemory;
         char error[1024];
         sprintf(error, "cannot load libmagic database - %s", magic_error(magic_cookie));
-        magic_close(magic_cookie);
-        (*env)->ReleaseStringUTFChars(env, mgc_file_path_java, mgc_file_path);
-        (*env)->ReleaseStringUTFChars(env, file_path_java, file_path);
         (*env)->ThrowNew(env, (*env)->FindClass(env, JAVA_LANG_EXCEPTION), error);
         return NULL;
     }
@@ -52,16 +53,16 @@ JNIEXPORT jstring JNICALL Java_ro_andob_libmagic_LibMagic_getFileMimeType(JNIEnv
     const char* mime_type = magic_file(magic_cookie, file_path);
     if (mime_type == NULL)
     {
+        ReleaseMemory;
         char error[1024];
         sprintf(error, "cannot determine mime type - %s", magic_error(magic_cookie));
-        magic_close(magic_cookie);
-        (*env)->ReleaseStringUTFChars(env, mgc_file_path_java, mgc_file_path);
-        (*env)->ReleaseStringUTFChars(env, file_path_java, file_path);
         (*env)->ThrowNew(env, (*env)->FindClass(env, JAVA_LANG_EXCEPTION), error);
         return NULL;
     }
 
-    magic_close(magic_cookie);
+    ReleaseMemory;
+    #undef ReleaseMemory
+
     return (*env)->NewStringUTF(env, mime_type);
 }
 
