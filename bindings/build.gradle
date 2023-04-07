@@ -84,7 +84,7 @@ project.afterEvaluate {
                 from components.release
                 groupId 'ro.andob.libmagic'
                 artifactId 'libmagic-bindings'
-                version '1.0.4'
+                version '1.0.5'
             }
         }
     }

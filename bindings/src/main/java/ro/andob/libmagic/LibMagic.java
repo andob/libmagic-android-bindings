@@ -27,12 +27,6 @@ public final class LibMagic
     {
         Objects.requireNonNull(file);
 
-        //some hard to detect mime types
-        if (file.getName().endsWith(".csv"))
-            return "text/csv";
-        if (file.getName().endsWith(".ifc"))
-            return "application/octet-stream";
-
         File databaseFile = Objects.requireNonNull(applicationContext).getFileStreamPath("magic.mgc");
         if (!databaseFile.exists())
         {
