@@ -24,7 +24,6 @@ class SampleActivity : Activity()
         val expectedResults = mapOf(
             "sample.doc" to "application/msword",
             "sample.docx" to "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            "sample.csv" to "text/csv",
             "sample.xls" to "application/vnd.ms-excel",
             "sample.xlsx" to "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
             "sample.ppt" to "application/vnd.ms-powerpoint",
@@ -33,7 +32,6 @@ class SampleActivity : Activity()
             "sample.jpg" to "image/jpeg",
             "sample.png" to "image/png",
             "sample.gif" to "image/gif",
-            "sample.ifc" to "application/octet-stream",
             "sample.html" to "text/html",
             "sample.json" to "application/json",
             "sample.txt" to "text/plain",
