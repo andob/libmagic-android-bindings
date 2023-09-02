@@ -27,7 +27,7 @@ JNIEXPORT jstring JNICALL Java_ro_andob_libmagic_LibMagic_getFileMimeType(JNIEnv
     const char* mgc_file_path = (*env)->GetStringUTFChars(env, mgc_file_path_java, 0);
     const char* file_path = (*env)->GetStringUTFChars(env, file_path_java, 0);
 
-    magic_t magic_cookie = magic_open(MAGIC_MIME);
+    magic_t magic_cookie = magic_open(MAGIC_MIME_TYPE);
 
     #define ReleaseMemory if (magic_cookie == NULL) magic_close(magic_cookie); \
         (*env)->ReleaseStringUTFChars(env, mgc_file_path_java, mgc_file_path); \
