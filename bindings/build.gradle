@@ -4,7 +4,7 @@ apply plugin: 'maven-publish'
 
 import org.apache.tools.ant.taskdefs.condition.Os
 
-task updateLibMagic {
+tasks.register('updateLibMagic') {
     doLast {
         if (Os.isFamily(Os.FAMILY_WINDOWS)) {
             throw new RuntimeException("Please use linux to build this project!")
@@ -15,19 +15,19 @@ task updateLibMagic {
         process.err.eachLine { line -> println 'ERROR: ' + line }
         process.waitFor()
 
-        if (process.exitValue()!=0) {
+        if (process.exitValue() != 0) {
             System.err.println("libmagic update exited with non-zero exit code")
-            throw new RuntimeException("libmagic update exit code: "+process.exitCode())
+            throw new RuntimeException("libmagic update exit code: " + process.exitCode())
         }
     }
 }
 
 android {
     namespace "ro.andob.libmagic"
-    compileSdk 33
+    compileSdk 34
     defaultConfig {
         minSdk 21
-        targetSdk 33
+        targetSdk 34
     }
     compileOptions {
         targetCompatibility JavaVersion.VERSION_17
@@ -84,7 +84,7 @@ project.afterEvaluate {
                 from components.release
                 groupId 'ro.andob.libmagic'
                 artifactId 'libmagic-bindings'
-                version '1.0.6'
+                version '1.0.7'
             }
         }
     }

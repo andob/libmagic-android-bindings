@@ -3,11 +3,11 @@ apply plugin: 'kotlin-android'
 
 android {
     namespace "ro.andob.libmagic.sample"
-    compileSdk 33
+    compileSdk 34
     defaultConfig {
         applicationId "ro.andob.libmagic.sample"
         minSdk 21
-        targetSdk 33
+        targetSdk 34
     }
     buildTypes {
         release {
