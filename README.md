@@ -1,4 +1,4 @@
-## Android binding library on [file(1) command and libmagic(3) library](https://github.com/file/file)
+## Android binding library on [libmagic(3) library](https://github.com/file/file)
 
 ``libmagic`` is the best way to determine the mime type of a file! This binding library enables you to determine mime type of files on Android.
 
@@ -34,7 +34,7 @@ val mimeType : String = someFile.getMimeType()
 
 ### Rationale
 
-1. Android SDK's [MimeTypeMap.getFileExtensionFromUrl](https://developer.android.com/reference/android/webkit/MimeTypeMap#getFileExtensionFromUrl(java.lang.String)) is flawed and incomplete. Will detect few mime types based on file's extension, NOT its contents!
+1. Android SDK's [MimeTypeMap](https://developer.android.com/reference/android/webkit/MimeTypeMap) is flawed and incomplete. Will detect few mime types based on file's extension, NOT its contents!
 2. There is also [Apache Tika Core](https://tika.apache.org/) which is great. Will detect lots of mime types based on file contents. However, it's a bit hacky to make it work on Android<8 because it uses [MethodHandle API](https://developer.android.com/reference/java/lang/invoke/MethodHandle). Thanks Google for not keeping up with modern Java standard library.
 3. There is also [AndroidMagic](https://github.com/huzongyao/AndroidMagic) library, another Android binding library to libmagic. However, I don't like it because it does not provide auto-update of libmagic code and database. On AndroidMagic, libmagic code and database were copy pasted right into the repository, thus the maintainer have to copy and paste when new version appears. This library, libmagic-android-bindings, uses a different approach: it clones file / libmagic repository as a git submodule and it does have an automatic update script. On each gradle build, libmagic source code is checked out again into the project and mime type database gets compiled and loaded into assets. Thus, this library is self-updating with the upstream libmagic code and database, you just need to hit build / publish a new version.
 4. While using a libmagic binding library will yield to a larger APK, because it contains native code .so files and the mime type database - by using file/libmagic you will always get the right mime type! file is the standard reimplementation used on Linux systems of the Unix file command. To say that "it is widely used" would be an underestimate.
