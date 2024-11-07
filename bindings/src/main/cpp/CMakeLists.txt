@@ -48,7 +48,7 @@ add_library(magic SHARED ${SOURCES})
 add_compile_definitions(PRIx64="x")
 add_compile_definitions(VERSION="android-bindings")
 
-##https://android.googlesource.com/platform/development/+/47c55f4/ndk/platforms/android-9/include/unistd.h#42
+#https://android.googlesource.com/platform/development/+/47c55f4/ndk/platforms/android-9/include/unistd.h#42
 add_compile_definitions(STDIN_FILENO=0)
 add_compile_definitions(STDOUT_FILENO=1)
 add_compile_definitions(STDERR_FILENO=2)
@@ -59,7 +59,11 @@ add_compile_definitions(W_OK=2)
 add_compile_definitions(X_OK=1)
 add_compile_definitions(F_OK=0)
 
+add_compile_definitions(HAVE_UNISTD_H)
+add_compile_definitions(HAVE_BYTESWAP_H)
 add_compile_definitions(HAVE_WCHAR_H)
+add_compile_definitions(HAVE_WCTYPE_H)
+add_compile_definitions(HAVE_ERR_H)
 add_compile_definitions(HAVE_MBRTOWC)
 add_compile_definitions(HAVE_WCWIDTH)
-add_compile_definitions(HAVE_WCTYPE_H)
+add_compile_definitions(HAVE_MKSTEMP)
