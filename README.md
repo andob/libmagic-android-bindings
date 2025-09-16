@@ -14,7 +14,7 @@ repositories {
 
 ```
 dependencies {
-    implementation 'ro.andob.libmagic:libmagic-bindings:1.0.8'
+    implementation 'ro.andob.libmagic:libmagic-bindings:1.0.9'
 }
 ```
 
