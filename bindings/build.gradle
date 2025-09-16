@@ -29,6 +29,7 @@ android {
         minSdk = 21
         targetSdk = 35
     }
+    ndkVersion '29.0.14033849'
     compileOptions {
         targetCompatibility JavaVersion.VERSION_17
         sourceCompatibility JavaVersion.VERSION_17
@@ -84,7 +85,7 @@ project.afterEvaluate {
                 from components.release
                 groupId 'ro.andob.libmagic'
                 artifactId 'libmagic-bindings'
-                version '1.0.9'
+                version '1.1.0'
             }
         }
     }
