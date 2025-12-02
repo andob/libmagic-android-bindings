@@ -3,12 +3,12 @@ set -e
 rm -rf ./file
 git submodule update --init --recursive
 cd ./file
-autoheader
-aclocal
 case `uname` in Darwin*) glibtoolize --ltdl --copy --force ;;
   *) libtoolize --ltdl --copy --force ;; esac
-automake --add-missing --copy
+aclocal
+autoheader
 autoconf
+automake --add-missing --copy
 ./configure
 make
 mkdir ./magic/bin

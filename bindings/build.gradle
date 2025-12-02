@@ -24,10 +24,10 @@ tasks.register('updateLibMagic') {
 
 android {
     namespace "ro.andob.libmagic"
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig {
         minSdk = 21
-        targetSdk = 35
+        targetSdk = 36
     }
     ndkVersion '29.0.14033849'
     compileOptions {
@@ -85,7 +85,7 @@ project.afterEvaluate {
                 from components.release
                 groupId 'ro.andob.libmagic'
                 artifactId 'libmagic-bindings'
-                version '1.1.0'
+                version '1.1.1'
             }
         }
     }
